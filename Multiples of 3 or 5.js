@@ -8,20 +8,13 @@ Additionally, if the number is negative, return 0.
 Note: If the number is a multiple of both 3 and 5, only count it once.
 */
 
-function solution(number){
+function solution(number) {
   let set = new Set();
-  
-  function recursive(num) {
-    if (num < 0) {
-      return 0;
-    } else {
-        if (num % 3 === 0 || num % 5 === 0) {
-          set.add(num);
-        }
-        return recursive(num - 1);
-      }
+  for (let num = number - 1; num > 0; num--) {
+    if (num % 3 === 0 || num % 5 === 0) {
+      set.add(num);
     }
-  recursive(number - 1);
+  }
   let sum = Array.from(set).reduce((a, b) => a + b, 0);
   return sum;
 }
