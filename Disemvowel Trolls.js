@@ -27,3 +27,9 @@ function disemvowel(str) {
   }
   return resultArray.join(' ');
 }
+
+// best practice
+
+function disemvowel(str) {
+  return str.replace(/[aeiou]/gi, '');
+}
