@@ -20,3 +20,28 @@ const getFactorialFromCache = (() => {
         return cache[n];
     };
 })();
+
+// refactor from chatGPT
+
+const getFactorialFromCache = {
+  cache: {},
+  getFactorial(n) {
+    if (this.cache[n]) {
+      return this.cache[n];
+    } else {
+      if (n === 0) {
+        return 1;
+      } else {
+        this.cache[n] = n * this.getFactorial(n - 1);
+        return this.cache[n];
+      }
+    }
+  },
+  calculate(n) {
+    if (typeof n !== 'number' || n < 0) {
+      throw new Error('Input must be a non-negative number');
+    }
+    this.cache[n] = this.getFactorial(n);
+    return this.cache[n];
+  }
+};
